@@ -31,6 +31,28 @@ class Camera:  # Класс нашей камеры
         if key[pg.K_e]:
             self.position -= self.up * self.moving_speed
 
+        if key[pg.K_LEFT]:
+            self.camera_yaw(-self.rotation_speed)
+        if key[pg.K_RIGHT]:
+            self.camera_yaw(self.rotation_speed)
+        if key[pg.K_UP]:
+            self.camera_pitch(-self.rotation_speed)
+        if key[pg.K_DOWN]:
+            self.camera_pitch(self.rotation_speed)
+
+    def camera_yaw(self, angle): #поворот камеры в пространстве
+        rotate = rotate_y(angle)
+        self.forward  = self.forward @ rotate
+        self.right =  self.right @ rotate
+        self.up = self.up @ rotate
+
+    def camera_pitch(self, angle):
+        rotate = rotate_x(angle)
+        self.forward = self.forward @ rotate
+        self.right = self.right @ rotate
+        self.up = self.right @ rotate
+
+
 
 
     def translate_matrix(self):
