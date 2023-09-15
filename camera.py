@@ -13,6 +13,25 @@ class Camera:  # Класс нашей камеры
         self.v_fov =  self.h_fov * (render.HEIGHT / render.WIDTH)
         self.near_plane = 0.1
         self.far_plane = 100
+        self.moving_speed = 0.02
+        self.rotation_speed = 0.01
+
+    def control(self): # управление камерой
+        key = pg.key.get_pressed()
+        if key[pg.K_a]:
+            self.position -= self.right * self.moving_speed
+        if key[pg.K_d]:
+            self.position += self.right * self.moving_speed
+        if key[pg.K_w]:
+            self.position += self.forward * self.moving_speed
+        if key[pg.K_s]:
+            self.position -= self.forward * self.moving_speed
+        if key[pg.K_q]:
+            self.position += self.up * self.moving_speed
+        if key[pg.K_e]:
+            self.position -= self.up * self.moving_speed
+
+
 
     def translate_matrix(self):
         x,y,z,w = self.position

@@ -29,6 +29,7 @@ class SoftwareRender: #Шаблон нашего приложения
     def run(self):
         while True:
             self.draw()
+            self.camera.control()
             [exit() for i in pg.event.get() if i.type == pg.QUIT] #Проверка на выход из приложения
             pg.display.set_caption(str(self.clock.get_fps()))
             pg.display.flip()
