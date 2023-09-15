@@ -50,7 +50,7 @@ class Camera:  # Класс нашей камеры
         rotate = rotate_x(angle)
         self.forward = self.forward @ rotate
         self.right = self.right @ rotate
-        self.up = self.right @ rotate
+        self.up = self.up @ rotate
 
 
 
